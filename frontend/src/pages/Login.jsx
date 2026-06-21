@@ -2,11 +2,12 @@ import React, { useContext, useEffect, useState } from 'react'
 import { AppContext } from '../context/AppContext'
 import axios from 'axios'
 import { toast } from 'react-toastify'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 const Login = () => {
 
-  const [state, setState] = useState('Sign Up')
+  const location = useLocation()
+  const [state, setState] = useState(location.state?.signup ? 'Sign Up' : 'Login')
 
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
