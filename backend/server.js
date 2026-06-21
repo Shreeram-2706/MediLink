@@ -13,9 +13,23 @@ const port = process.env.PORT || 4000;
 connectDB()
 connectCloudinary()
 
-// CORS configuration - Use environment variable for frontend URL
+// Define allowed origins
+const allowedOrigins = [
+  'https://medilink-frontend-yyl3.onrender.com',
+  'https://medilink-admin-dix4.onrender.com',
+  process.env.FRONTEND_URL,
+  process.env.ADMIN_URL
+].filter(Boolean); // Remove undefined values
+
+// CORS configuration - Support multiple origins
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || 'https://medilink-frontend-yyl3.onrender.com',
+  origin: (origin, callback) => {
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'token']
