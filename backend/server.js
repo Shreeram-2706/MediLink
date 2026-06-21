@@ -9,7 +9,7 @@ import adminRouter from "./routes/adminRoute.js"
 
 // app config
 const app = express()
-const port = process.env.PORT || 4000; // Match frontend expectation
+const port = process.env.PORT || 4000;
 connectDB()
 connectCloudinary()
 
@@ -18,7 +18,7 @@ const corsOptions = {
   origin: process.env.FRONTEND_URL || 'https://medilink-frontend-yyl3.onrender.com',
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization', 'token']
 };
 
 // middlewares
