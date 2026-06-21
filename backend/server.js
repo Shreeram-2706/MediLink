@@ -13,9 +13,17 @@ const port = process.env.PORT || 4000; // Match frontend expectation
 connectDB()
 connectCloudinary()
 
+// CORS configuration
+const corsOptions = {
+  origin: 'https://medilink-backend-gxzg.onrender.com',
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
+
 // middlewares
 app.use(express.json())
-app.use(cors())
+app.use(cors(corsOptions))
 
 // api endpoints
 app.use("/api/user", userRouter)
