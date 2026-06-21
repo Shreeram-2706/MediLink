@@ -13,9 +13,9 @@ const port = process.env.PORT || 4000; // Match frontend expectation
 connectDB()
 connectCloudinary()
 
-// CORS configuration
+// CORS configuration - Use environment variable for frontend URL
 const corsOptions = {
-  origin: 'https://medilink-backend-gxzg.onrender.com',
+  origin: process.env.FRONTEND_URL || 'https://medilink-frontend-yyl3.onrender.com',
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
